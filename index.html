@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Skip Ad Example with Timer</title>
+    <style>
+      button {
+        border-radius: 1px;
+      }
+      button:hover {
+        background: rgb(71, 71, 145);
+        color: white;
+        border: 1px solid rebeccapurple;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="skipButton" disabled>
+      Skip Ad (<span id="countdown">5</span>s)
+    </button>
+    <center>
+      <video
+        id="myVideo"
+        height="500"
+        controls
+        loop
+        autoplay
+        unmute
+        style="display: none"
+      >
+        <source src="./m1.mp4" type="video/mp4" />
+      </video>
+    </center>
+
+    <script>
+      var countdownTime = 7;
+      var countdownElement = document.getElementById("countdown");
+      var skipButton = document.getElementById("skipButton");
+
+      var countdownInterval = setInterval(function () {
+        countdownTime--;
+        countdownElement.textContent = countdownTime;
+
+        if (countdownTime <= 0) {
+          clearInterval(countdownInterval);
+          skipButton.disabled = false;
+          skipButton.textContent = "Skip Ad";
+        }
+      }, 1000);
+      skipButton.addEventListener("click", function () {
+        document.getElementById("myVideo").style.display = "block";
+        document.getElementById("myVideo").play();
+        this.style.display = "none";
+      });
+    </script>
+  </body>
+</html>
