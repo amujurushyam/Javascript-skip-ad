@@ -1,0 +1,1 @@
+# Javascript-skip-ad
